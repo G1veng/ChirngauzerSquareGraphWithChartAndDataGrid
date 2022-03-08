@@ -1,5 +1,6 @@
 using System.Windows.Forms.DataVisualization.Charting;
 using OfficeOpenXml;
+using OfficeOpenXml.Drawing.Chart;
 using Services;
 
 namespace ChirngauzerSquareGraph
@@ -262,6 +263,7 @@ namespace ChirngauzerSquareGraph
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
         var package = new ExcelPackage();
         var sheet = package.Workbook.Worksheets.Add("GraphPoint");
+        var graph = package.Workbook.Worksheets.Add("Chart");
         sheet.Cells[1, 1].Value = "a - "; sheet.Cells[1, 2].Value = double.Parse(ConstA.Text);
         sheet.Cells[2, 1].Value = "Left border - "; sheet.Cells[2, 2].Value = double.Parse(LeftBorder.Text);
         sheet.Column(1).Width = 14;
@@ -272,11 +274,29 @@ namespace ChirngauzerSquareGraph
         sheet.Cells[5, 1].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
         sheet.Cells[5, 2].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
         var points = GetCalculations();
-        for (int i = 0; i < points.Count; i++)
+        int iterator = 0;
+        for (int i = 0; i < points.Count; i+=2)
         {
-          sheet.Cells[i + 6, 1].Value = points[i].x;
-          sheet.Cells[i + 6, 2].Value = points[i].y;
+          sheet.Cells[iterator + 6, 1].Value = points[i].x;
+          sheet.Cells[iterator + 6, 2].Value = points[i].y;
+          iterator++;
         }
+        iterator = 0;
+        for(int i = 1; i < points.Count; i += 2)
+        {
+          sheet.Cells[iterator + 6, 3].Value = points[i].y;
+          iterator++;
+        }
+        var chart = (ExcelLineChart)graph.Drawings.AddChart("Square", eChartType.Line);
+        chart.Legend.Position = eLegendPosition.Right;
+        chart.Legend.Add();
+        chart.SetPosition(1, 0, 1, 0);
+        chart.SetSize(1000, 600);
+        int count = points.Count / 2;
+        ExcelRangeBase excelFirstRangeBase = sheet.Cells["B6:B" + count.ToString()];
+        ExcelRangeBase excelSecondRangeBase = sheet.Cells["C6:C" + count.ToString()];
+        chart.Series.Add(excelFirstRangeBase);
+        chart.Series.Add(excelSecondRangeBase);
         File.WriteAllBytes(filePath, package.GetAsByteArray());
       }
     }
