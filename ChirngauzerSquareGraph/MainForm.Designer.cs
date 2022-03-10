@@ -26,6 +26,7 @@
         private void InitializeComponent()
         {
       this.components = new System.ComponentModel.Container();
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       this.WrongData = new System.Windows.Forms.ErrorProvider(this.components);
       this.ConstA = new System.Windows.Forms.TextBox();
       this.LeftBorder = new System.Windows.Forms.TextBox();
@@ -44,9 +45,11 @@
       this.saveInitialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.saveInExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.Table = new System.Windows.Forms.Button();
+      this.pictureWithRabbit = new System.Windows.Forms.PictureBox();
       ((System.ComponentModel.ISupportInitialize)(this.WrongData)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.PictureOfGraph)).BeginInit();
       this.menuStrip1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureWithRabbit)).BeginInit();
       this.SuspendLayout();
       // 
       // WrongData
@@ -195,11 +198,22 @@
       this.Table.UseVisualStyleBackColor = true;
       this.Table.Click += new System.EventHandler(this.Table_Click);
       // 
+      // pictureWithRabbit
+      // 
+      this.pictureWithRabbit.Image = ((System.Drawing.Image)(resources.GetObject("pictureWithRabbit.Image")));
+      this.pictureWithRabbit.Location = new System.Drawing.Point(434, 355);
+      this.pictureWithRabbit.Name = "pictureWithRabbit";
+      this.pictureWithRabbit.Size = new System.Drawing.Size(51, 56);
+      this.pictureWithRabbit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+      this.pictureWithRabbit.TabIndex = 12;
+      this.pictureWithRabbit.TabStop = false;
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(800, 450);
+      this.ClientSize = new System.Drawing.Size(800, 440);
+      this.Controls.Add(this.pictureWithRabbit);
       this.Controls.Add(this.Table);
       this.Controls.Add(this.PictureOfGraph);
       this.Controls.Add(this.label4);
@@ -212,13 +226,17 @@
       this.Controls.Add(this.LeftBorder);
       this.Controls.Add(this.ConstA);
       this.Controls.Add(this.menuStrip1);
+      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.MainMenuStrip = this.menuStrip1;
+      this.MaximumSize = new System.Drawing.Size(818, 487);
+      this.MinimumSize = new System.Drawing.Size(818, 487);
       this.Name = "MainForm";
       this.Text = "CharngauzerSquare";
       ((System.ComponentModel.ISupportInitialize)(this.WrongData)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.PictureOfGraph)).EndInit();
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureWithRabbit)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -244,5 +262,6 @@
     private ToolStripMenuItem saveInitialToolStripMenuItem;
     private ToolStripMenuItem saveInExcelToolStripMenuItem;
     private Button Table;
+    private PictureBox pictureWithRabbit;
   }
 }

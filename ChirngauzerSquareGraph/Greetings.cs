@@ -7,6 +7,7 @@ namespace ChirngauzerSquareGraph
     {
       InitializeComponent();
       this.StartPosition = FormStartPosition.CenterParent;
+      this.Icon = new Icon(@"D:\4 семестр\РПС\ChirngauzerSquareGraph\SmartRabbit.ico");
       GreetingInner();
     }
     CheckBox dontShowAgain;

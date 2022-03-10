@@ -11,7 +11,7 @@ namespace ChirngauzerSquareGraph
     private readonly string errorOfConst = "Graph is dot";
     private readonly string borderError = "Wrong border edges";
     private readonly ICharngauzerSquare _concentrationService;
-    Chart chart;
+    private Chart chart;
     public MainForm(ICharngauzerSquare concentrationService)
     {
       _concentrationService = concentrationService ?? throw new ArgumentNullException(nameof(concentrationService));
@@ -169,8 +169,8 @@ namespace ChirngauzerSquareGraph
     }
     private int OpenGreetingsForm()
     {
-      FileStream createFile = null;
-      StreamReader file = null;
+      FileStream createFile;
+      StreamReader file;
       try
       {
         file = new StreamReader("Agreement.txt");
@@ -297,13 +297,19 @@ namespace ChirngauzerSquareGraph
         ExcelRangeBase excelSecondRangeBase = sheet.Cells["C6:C" + count.ToString()];
         chart.Series.Add(excelFirstRangeBase);
         chart.Series.Add(excelSecondRangeBase);
-        File.WriteAllBytes(filePath, package.GetAsByteArray());
+        if(filePath != "")
+          File.WriteAllBytes(filePath, package.GetAsByteArray());
       }
     }
     private void Table_Click(object sender, EventArgs e)
     {
-      Table table = new Table(GetCalculations());
-      table.Show();
+      CheckData();
+      if (WrongData.GetError(LeftBorder) == "" && WrongData.GetError(RightBorder) == ""
+        && WrongData.GetError(ConstA) == "" && WrongData.GetError(Step) == "")
+      {
+        Table table = new Table(GetCalculations());
+        table.Show();
+      }
     }
   }
 }

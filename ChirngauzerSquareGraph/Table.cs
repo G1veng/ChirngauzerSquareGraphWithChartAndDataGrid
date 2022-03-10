@@ -83,6 +83,7 @@ namespace ChirngauzerSquareGraph
         dataGridView.Rows.Add(iterator.ToString(), Math.Round(somePointsDown[i].X, 4), Math.Round(somePointsDown[i].Y, 4));
         iterator++;
       }
+      this.Icon = new Icon(@"D:\4 семестр\РПС\ChirngauzerSquareGraph\RabbitTrainTwo.ico");
     }
     private void CreateButtons()
     {
