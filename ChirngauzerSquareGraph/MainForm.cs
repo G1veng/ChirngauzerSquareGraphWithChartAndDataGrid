@@ -12,20 +12,31 @@ namespace ChirngauzerSquareGraph
     private readonly string borderError = "Wrong border edges";
     private readonly ICharngauzerSquare _concentrationService;
     private Chart chart;
+    private void NotificationFileSaved()
+    {
+      MessageBox.Show(
+        "File saved",
+        "Notification",
+        MessageBoxButtons.OK,
+        MessageBoxIcon.Information,
+        MessageBoxDefaultButton.Button1,
+        MessageBoxOptions.DefaultDesktopOnly);
+    }
     public MainForm(ICharngauzerSquare concentrationService)
     {
       _concentrationService = concentrationService ?? throw new ArgumentNullException(nameof(concentrationService));
       InitializeComponent();
+      this.StartPosition = FormStartPosition.CenterScreen;
       ConstA.Text = "1";
       LeftBorder.Text = "-100";
       RightBorder.Text = "1";
       Step.Text = "1";
-      Bitmap bmp = new Bitmap(@"D:\4 семестр\РПС\ChirngauzerSquareGraph\ChirngauzerSquareGraph\Equation.png");
+      Bitmap bmp = new Bitmap("SavedFiles\\Equation.png");
       PictureOfGraph.Image = bmp;
       if (OpenGreetingsForm() == 0)
       {
         Greetings greeting = new Greetings();
-        greeting.StartPosition = FormStartPosition.CenterParent;
+        greeting.StartPosition = FormStartPosition.CenterScreen;
         greeting.Show();
       }
     }
@@ -68,12 +79,15 @@ namespace ChirngauzerSquareGraph
       }
       if (ConstA.Text != "" && ConstA.Text != "0" && WrongData.GetError(LeftBorder) == "" && WrongData.GetError(RightBorder) == "")
       {
-        if (double.Parse(constA) > 0)
-          if (double.Parse(rightBorder) > double.Parse(constA))
-            WrongData.SetError(RightBorder, error);
-        if (double.Parse(constA) < 0)
-          if (double.Parse(leftBorder) < double.Parse(constA))
-            WrongData.SetError(LeftBorder, error);
+        if (constA.Length == null)
+        {
+          if (double.Parse(constA) > 0)
+            if (double.Parse(rightBorder) > double.Parse(constA))
+              WrongData.SetError(RightBorder, error);
+          if (double.Parse(constA) < 0)
+            if (double.Parse(leftBorder) < double.Parse(constA))
+              WrongData.SetError(LeftBorder, error);
+        }
       }
       if (RightBorder.Text != "" && double.TryParse(RightBorder.Text, out uselessResult))
       {
@@ -141,6 +155,7 @@ namespace ChirngauzerSquareGraph
           seriesUp.Points.AddXY(somePointsUp[i].X, somePointsUp[i].Y);
           seriesDown.Points.AddXY(somePointsDown[i].X, somePointsDown[i].Y);
         }
+        chart.Series["Series1"].IsVisibleInLegend = false;
         chart.Invalidate();
       }
     }
@@ -164,7 +179,7 @@ namespace ChirngauzerSquareGraph
     private void informationToolStripMenuItem_Click(object sender, EventArgs e)
     {
       Greetings greeting = new Greetings();
-      greeting.StartPosition = FormStartPosition.CenterParent;
+      this.StartPosition = FormStartPosition.CenterScreen;
       greeting.Show();
     }
     private int OpenGreetingsForm()
@@ -197,8 +212,8 @@ namespace ChirngauzerSquareGraph
     {
       using (OpenFileDialog openFileDialog = new OpenFileDialog())
       {
-        openFileDialog.InitialDirectory = "d:\\4 семестр\\РПС";
-        openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+        openFileDialog.InitialDirectory = "SavedFiles";
+        openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.txt)|*.txt";
         openFileDialog.FilterIndex = 2;
         openFileDialog.RestoreDirectory = true;
         if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -219,7 +234,7 @@ namespace ChirngauzerSquareGraph
     {
       CheckData();
       SaveFileDialog saveFileDialog = new SaveFileDialog();
-      saveFileDialog.InitialDirectory = "d:\\4 семестр\\РПС";
+      saveFileDialog.InitialDirectory = "SavedFiles";
       saveFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
       if (WrongData.GetError(LeftBorder) == "" && WrongData.GetError(RightBorder) == ""
         && WrongData.GetError(ConstA) == "" && WrongData.GetError(Step) == "")
@@ -241,6 +256,7 @@ namespace ChirngauzerSquareGraph
               file.WriteLine(double.Parse(Step.Text));
             }
           }
+          NotificationFileSaved();
         }
       }
     }
@@ -251,7 +267,7 @@ namespace ChirngauzerSquareGraph
         && WrongData.GetError(ConstA) == "" && WrongData.GetError(Step) == "")
       {
         SaveFileDialog saveFileDialog = new SaveFileDialog();
-        saveFileDialog.InitialDirectory = "d:\\4 семестр\\РПС";
+        saveFileDialog.InitialDirectory = "SavedFiles";
         saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.xlsx)|*.xlsx";
         saveFileDialog.FilterIndex = 2;
         saveFileDialog.RestoreDirectory = true;
@@ -299,6 +315,7 @@ namespace ChirngauzerSquareGraph
         chart.Series.Add(excelSecondRangeBase);
         if(filePath != "")
           File.WriteAllBytes(filePath, package.GetAsByteArray());
+        NotificationFileSaved();
       }
     }
     private void Table_Click(object sender, EventArgs e)

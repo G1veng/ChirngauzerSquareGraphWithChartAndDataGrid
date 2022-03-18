@@ -35,4 +35,20 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="SavedFiles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="SavedFiles\Equation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SavedFiles\RabbitTrainTwo.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SavedFiles\SmartRabbit.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

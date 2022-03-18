@@ -5,11 +5,22 @@ namespace ChirngauzerSquareGraph
   public partial class Table : Form
   {
     private DataGridView dataGridView = null;
+    private void NotificationFileSaved()
+    {
+      MessageBox.Show(
+        "File saved",
+        "Notification",
+        MessageBoxButtons.OK,
+        MessageBoxIcon.Information,
+        MessageBoxDefaultButton.Button1,
+        MessageBoxOptions.DefaultDesktopOnly);
+    }
     public Table(List<ModelCharngauzerSquare> data)
     {
       InitializeComponent();
       CreateGrid();
       FillDataGridWithData(data);
+      this.StartPosition = FormStartPosition.CenterScreen;
       CreateButtons();
     }
     private void CreateGrid()
@@ -83,7 +94,7 @@ namespace ChirngauzerSquareGraph
         dataGridView.Rows.Add(iterator.ToString(), Math.Round(somePointsDown[i].X, 4), Math.Round(somePointsDown[i].Y, 4));
         iterator++;
       }
-      this.Icon = new Icon(@"D:\4 семестр\РПС\ChirngauzerSquareGraph\RabbitTrainTwo.ico");
+      this.Icon = new Icon("SavedFiles\\RabbitTrainTwo.ico");
     }
     private void CreateButtons()
     {
@@ -107,7 +118,7 @@ namespace ChirngauzerSquareGraph
     private void SaveClick(object sender, EventArgs e)
     {
       SaveFileDialog saveFileDialog = new SaveFileDialog();
-      saveFileDialog.InitialDirectory = @"d:\4 семестр\РПС";
+      saveFileDialog.InitialDirectory = "SavedFiles";
       saveFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
       if (saveFileDialog.ShowDialog() == DialogResult.OK)
       {
@@ -119,6 +130,7 @@ namespace ChirngauzerSquareGraph
           file.WriteLine(row.Cells[1].Value + " " + row.Cells[2].Value);
         }
         file.Close();
+        NotificationFileSaved();
       }
     }
   }

@@ -39,11 +39,11 @@
       this.label4 = new System.Windows.Forms.Label();
       this.PictureOfGraph = new System.Windows.Forms.PictureBox();
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-      this.informationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.getInitialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.saveInitialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.saveInExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.informationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.Table = new System.Windows.Forms.Button();
       this.pictureWithRabbit = new System.Windows.Forms.PictureBox();
       ((System.ComponentModel.ISupportInitialize)(this.WrongData)).BeginInit();
@@ -99,9 +99,9 @@
       this.label1.AutoSize = true;
       this.label1.Location = new System.Drawing.Point(638, 139);
       this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(68, 20);
+      this.label1.Size = new System.Drawing.Size(70, 20);
       this.label1.TabIndex = 5;
-      this.label1.Text = "const \"a\"";
+      this.label1.Text = "Сonst \"a\"";
       // 
       // label2
       // 
@@ -142,20 +142,13 @@
       // 
       this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
       this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.informationToolStripMenuItem,
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.informationToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
       this.menuStrip1.Size = new System.Drawing.Size(800, 28);
       this.menuStrip1.TabIndex = 10;
       this.menuStrip1.Text = "menuStrip1";
-      // 
-      // informationToolStripMenuItem
-      // 
-      this.informationToolStripMenuItem.Name = "informationToolStripMenuItem";
-      this.informationToolStripMenuItem.Size = new System.Drawing.Size(101, 24);
-      this.informationToolStripMenuItem.Text = "Information";
-      this.informationToolStripMenuItem.Click += new System.EventHandler(this.informationToolStripMenuItem_Click);
       // 
       // fileToolStripMenuItem
       // 
@@ -188,6 +181,13 @@
       this.saveInExcelToolStripMenuItem.Text = "Save in Excel";
       this.saveInExcelToolStripMenuItem.Click += new System.EventHandler(this.saveInExcelToolStripMenuItem_Click);
       // 
+      // informationToolStripMenuItem
+      // 
+      this.informationToolStripMenuItem.Name = "informationToolStripMenuItem";
+      this.informationToolStripMenuItem.Size = new System.Drawing.Size(101, 24);
+      this.informationToolStripMenuItem.Text = "Information";
+      this.informationToolStripMenuItem.Click += new System.EventHandler(this.informationToolStripMenuItem_Click);
+      // 
       // Table
       // 
       this.Table.Location = new System.Drawing.Point(604, 387);
@@ -201,7 +201,7 @@
       // pictureWithRabbit
       // 
       this.pictureWithRabbit.Image = ((System.Drawing.Image)(resources.GetObject("pictureWithRabbit.Image")));
-      this.pictureWithRabbit.Location = new System.Drawing.Point(434, 355);
+      this.pictureWithRabbit.Location = new System.Drawing.Point(547, 343);
       this.pictureWithRabbit.Name = "pictureWithRabbit";
       this.pictureWithRabbit.Size = new System.Drawing.Size(51, 56);
       this.pictureWithRabbit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
