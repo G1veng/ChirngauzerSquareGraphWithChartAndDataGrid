@@ -18,6 +18,7 @@ namespace ChirngauzerSquareGraph
       // see https://aka.ms/applicationconfiguration.
       ApplicationConfiguration.Initialize();
       Application.Run(_container.Resolve<MainForm>());
+      
     }
     private static void RegisterTypes()
     {

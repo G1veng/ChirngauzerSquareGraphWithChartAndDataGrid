@@ -8,7 +8,7 @@ namespace Services
         public List<ModelCharngauzerSquare> GetPoints(double a, double leftBorder, double rigthBorder, double step)
         {
             List<ModelCharngauzerSquare> points = new List<ModelCharngauzerSquare>();
-            for (double x = leftBorder; x <= rigthBorder; x += step)
+            for (double x = leftBorder; x <= rigthBorder && x + step < rigthBorder; x += step)
             {
                 double y = GetY(x, a);
                 points.Add(new ModelCharngauzerSquare((double)x, y));

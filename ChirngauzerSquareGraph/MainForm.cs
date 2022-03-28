@@ -313,9 +313,11 @@ namespace ChirngauzerSquareGraph
         ExcelRangeBase excelSecondRangeBase = sheet.Cells["C6:C" + count.ToString()];
         chart.Series.Add(excelFirstRangeBase);
         chart.Series.Add(excelSecondRangeBase);
-        if(filePath != "")
+        if (filePath != "")
+        {
           File.WriteAllBytes(filePath, package.GetAsByteArray());
-        NotificationFileSaved();
+          NotificationFileSaved();
+        }
       }
     }
     private void Table_Click(object sender, EventArgs e)
